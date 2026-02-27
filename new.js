@@ -8,6 +8,8 @@ function TataCar(chassisNumber, modelName){
     this.fuelLevel = 100;
 } 
 
+    NEW keywoard ki 4 Baate 
+
 step 1 : - jaise ki aapne new keyword lagaya then ek empty object diya jata hai
 
 step 2 : - iss empty object ke prototype ko TataCar ke prototype ko link kiya jata hai.
@@ -19,8 +21,6 @@ step 4 : - explicit return karta hai object ko (Final kaam hota hai new ka ki ag
 
 
 */
-
-
 
 function TataCar(chassisNumber, modelName){
     this.chassisNumber = chassisNumber;
@@ -39,7 +39,6 @@ console.log(car1.modelName);
 console.log(car2.modelName);     
 console.log(car1.status());     
 console.log(car2.status());     
-
 
 
 // this is not same as above 
@@ -61,3 +60,13 @@ const auto2 = createAutoRickshaw("UP-2","Agra-Mathura");
 console.log(auto1.run());   
 console.log(auto2.run());
 
+/*
+
+see the difference between constructor function and factory function : -
+
+Constructor function : - - it is a function that is used to create objects using the new keyword. It uses the this keyword to set the properties of the object and it can also have methods defined on its prototype.
+
+Factory function : - it is a function that returns an object. It does not use the new keyword and it does not use the this keyword. It can also have methods defined on the object that it returns. 
+
+
+*/
