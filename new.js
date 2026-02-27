@@ -10,7 +10,7 @@ function TataCar(chassisNumber, modelName){
 
 step 1 : - jaise ki aapne new keyword lagaya then ek empty object diya jata hai
 
-step 2 : - iss empty object ke prototype ko TataCar ke prototype ko link kiya jata hai
+step 2 : - iss empty object ke prototype ko TataCar ke prototype ko link kiya jata hai.
 
 step 3 : - this keyword activate ho jata hai jo bhi isko call kr rha hai usko bind karta hai 
 (jaise ki see for car1 as we pass values jo bhi values provide kr rha hai vo this ko jaate hai then car1 ko aapna this milgaya or car2 ko bhi apna this milgaya this matlab un variables ka reference)
