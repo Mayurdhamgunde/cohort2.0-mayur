@@ -68,5 +68,4 @@ Constructor function : - - it is a function that is used to create objects using
 
 Factory function : - it is a function that returns an object. It does not use the new keyword and it does not use the this keyword. It can also have methods defined on the object that it returns. 
 
-
 */
