@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #0f0f15 0%, #1a1a24 100%);
+        color: #d0d0d0;
+        padding: 5%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
+    }
+
+    div {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: rgba(20, 20, 30, 0.9);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .txtinput {
+        background-color: rgba(30, 30, 45, 0.8);
+        color: #d0d0d0;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        padding: 12px 15px;
+        width: 70%;
+        font-size: 16px;
+        transition: all 0.3s ease;
+    }
+
+    .txtinput:focus {
+        outline: none;
+        border-color: #5a8f6a;
+        background-color: rgba(40, 40, 55, 0.9);
+        box-shadow: 0 0 10px rgba(90, 143, 106, 0.2);
+    }
+
+    .txtinput::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn {
+        background-color: #4a6e4a;
+        color: #d0d0d0;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 25%;
+        transition: all 0.3s ease;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        background-color: #5a8e5a;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(90, 143, 106, 0.2);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+    }
+
+    #todoContainer {
+        list-style: none;
+        margin-top: 25px;
+    }
+
+    #todoContainer li {
+        background-color: rgba(35, 35, 50, 0.7);
+        color: #d0d0d0;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border-left: 4px solid #5a8f6a;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 16px;
+    }
+
+    #todoContainer li:hover {
+        background-color: rgba(50, 50, 65, 0.8);
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    #todoContainer li:active {
+        opacity: 0.8;
+    }
+</style>
+<body>
+    <div>
+        <input type="text" class="txtinput" placeholder="Enter your text" id="todoInput">
+        <Button class="btn" id="createbtn">Create</Button>
+        <ul id="todoContainer">
+            <li>Do JS</li>
+            <li>Record a video for closures</li>
+            <li>Check if she has replied or not</li>
+        </ul>
+    </div>
+    <script>
+        const createButtonRef = document.getElementById('createbtn');
+        const todoInputRef = document.getElementById('todoInput');
+        const todoContainerRef = document.getElementById('todoContainer');
+
+        (async ()=>{
+            fetch('https://api.freeapi.app/api/v1/public/quotes',{
+                method: 'GET',
+            }).then(response => response.json())    //JSON => Object
+            .then((data)=>{
+                console.log(data.data.data)
+                for(const obj of data.data.data){
+                    const li = document.createElement('li')
+                    li.innerText = obj.content;
+                    todoContainerRef.appendChild(li)
+                }
+            });
+        })()
+    
+        createButtonRef.addEventListener('click',function(){
+            const value = todoInputRef.value
+            //console.log(value);
+
+            const li = document.createElement('li')     // <li></li>
+            li.innerText = value;   // <li>{vlaue}</li>
+            li.addEventListener('click',function(){
+                li.remove();
+            })
+            todoContainerRef.appendChild(li)
+            todoInputRef.value = ''
+        });
+
+        // is code mein humne ek simple todo list banaya hai jisme user apna todo item input kar sakta hai aur create button par click karne par wo item list mein add ho jayega. Aur agar user kisi item par click karega toh wo item list se remove ho jayega.
+    </script>
+</body>
+</html>
