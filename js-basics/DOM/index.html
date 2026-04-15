@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: black;
+        color: white;
+    }
+</style>
+<body>
+   <!-- <button id="clickbtn" onclick="saveDataToDb()">Click Me</button> -->
+   <button id="clickbtn">Click Me</button>
+   <script>
+    let buttonRef = window.document.getElementById('clickbtn');
+    buttonRef.style.backgroundColor = "pink"
+    // buttonRef.onclick = function(){
+    //     console.log('kuch to hua hai')
+    // }
+    // buttonRef.onclick = function(){
+    //     console.log('kuch to hua hai')
+    // } 
+
+    // function saveDataToDb(){
+    //     console.log('We are now saving to db');
+    // }  
+    // Hum aise bhi kar sakte hain par problem ye hai ki agar humne onclick ke andar kuch aur function daal diya toh pehle wala function overwrite ho jayega aur wo execute nahi hoga. Isliye hum addEventListener ka use karte hain jisse hum multiple functions ko ek hi event ke sath attach kar sakte hain bina kisi function ko overwrite kiye.
+    buttonRef.addEventListener('click', function(){
+        console.log('kuch to hua hai')
+    })
+    buttonRef.addEventListener('click', function(){
+        console.log('kuch to hua hai')
+    })
+    // ye dono functions click event ke sath attach ho jayenge aur dono execute honge jab button click hoga.
+
+
+    buttonRef.addEventListener('click', onClickHandler)
+// hoisting ke karan hum onClickHandler function ko addEventListener ke andar use kar sakte hain chahe humne usse pehle define kiya ho ya baad mein. Hoisting ke karan function declarations ko unke scope ke top par le jaya jata hai, isliye hum onClickHandler function ko addEventListener ke andar use kar sakte hain bina kisi error ke.
+    const onClickHandler = function(){
+        console.log('kuch to hua hai')
+        buttonRef.removeEventListener('click', onClickHandler) // isse onClickHandler function click event se remove ho jayega aur click karne par kuch nahi hoga.
+        buttonRef = null;   // isse hum buttonRef variable ko null kar dete hain jisse hum usse access nahi kar sakte hain aur memory leak bhi nahi hoga.
+        // its optimized way hai to add and remove event listeners.kyuki agar hum anonymous function use karte hain to usse remove nahi kar sakte kyuki uska reference nahi hota hai. Isliye hum named function ka use karte hain jisse hum usse remove bhi kar sakte hain.
+    }
+     </script>
+</body>
+</html>
